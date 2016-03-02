@@ -29,6 +29,7 @@ Gulp is required in the application directory and of course you could do this on
 On your workstation run:
 
 `$ npm rm --global gulp`
+
 `$ npm install --global gulp-cli`
 
 
