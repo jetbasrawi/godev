@@ -34,6 +34,7 @@ On your workstation run:
 
 
 From the application directory .../github.com/jetbasrawi/godev run
+
 `$ npm install --save-dev gulp`
 
 Once you have installed Gulp you should be good to go.
