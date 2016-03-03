@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var child = require('child_process');
+var notifier   = require('node-notifier');
+var util       = require('gulp-util');
 var server = null;
 
 //Runs the file watching and then calls init
@@ -17,14 +19,29 @@ gulp.task('watch', function() {
 //Call go install which will compile the go code
 //and install it in the GOBIN directory
 gulp.task('build', function() {
-  return child.spawnSync('go', ['install']);
+  var build = child.spawnSync('go', ['install']);
+  if (build.stderr.length) {
+    var lines = build.stderr.toString()
+      .split('\n').filter(function(line) {
+        return line.length
+      });
+    for (var l in lines)
+      util.log(util.colors.red(
+        'Error (go install): ' + lines[l]
+      ));
+    notifier.notify({
+      title: 'Error (go install)',
+      message: lines
+    });
+  }
+  return build;
 });
 
 //Stop the running process and run a new one
 gulp.task('run', function() {
   if (server)
     server.kill();
-  server = child.spawn('godev');
+  server = child.spawn('app');
   server.stderr.on('data', function(data) {
     process.stdout.write(data.toString());
   });

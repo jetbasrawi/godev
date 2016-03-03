@@ -33,9 +33,13 @@ On your workstation run:
 `$ npm install --global gulp-cli`
 
 
-From the application directory .../github.com/jetbasrawi/godev run
+You will need to install a number of gulp related dependencies in your local project directory on your workstation. From the application directory github.com/jetbasrawi/godev run
 
 `$ npm install --save-dev gulp`
+
+`$ npm install gulp-util --save-dev`
+
+`$ npm install --save node-notifier`
 
 Once you have installed Gulp you should be good to go.
 
@@ -43,11 +47,13 @@ From the CLI in your vagrant VM or docker-machine navigate to the project folder
 
 `$ docker-compose up`
 
-The web container should be built and run in attached mode. 
+The web container should be built and run in attached mode. If you get any errors related to Gulp make sure that you have performed the installation steps above and on your *workstation*.
 
 You should see the Grunt tasks logging to the command line.
 
 You should now be able to view the application in the browser of your workstation.
+
+If your application has a compile error, the output of this is sent to the console.
 
 If you are running vagrant, you can forward this port to your workstation and you can view the running application at http://localhost:8080.
 

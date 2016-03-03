@@ -7,11 +7,9 @@ RUN npm install --global gulp-cli
 
 ENV GOPATH=/go GOBIN=$GOPATH/bin PATH=$PATH:/go/bin
 
-VOLUME ["/go/src/github.com/jetbasrawi/godev", "/go/pkg", "/go/bin"]
+VOLUME ["/go/src/github.com/jetbasrawi/app", "/go/pkg", "/go/bin"]
 
-WORKDIR /go/src/github.com/jetbasrawi/godev
-
-RUN npm install --save-dev gulp
+WORKDIR /go/src/github.com/jetbasrawi/app
 
 CMD ["gulp"]
 
